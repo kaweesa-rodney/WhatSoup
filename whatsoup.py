@@ -80,8 +80,8 @@ def setup_selenium():
 
     # Load driver and chrome profile from local directories
     load_dotenv()
-    DRIVER_PATH = os.getenv('DRIVER_PATH')
-    CHROME_PROFILE = os.getenv('CHROME_PROFILE')
+    DRIVER_PATH = "D:\software projects\WhatSoup\chromedriver_win32\chromedriver.exe" #os.getenv('DRIVER_PATH')
+    CHROME_PROFILE = r"C:\Users\kawee\AppData\Local\Google\Chrome\User Data" #os.getenv('CHROME_PROFILE')
 
     # Configure selenium
     options = webdriver.ChromeOptions()
@@ -286,6 +286,14 @@ def print_chats(chats, full=False):
         # Add chat records to the table
         for i, chat in enumerate(chats, start=1):
             t.add_row([str(i), chat['name'], chat['time'], chat['message']])
+
+
+        '''with open(f"exports/exported.txt", "wb") as text_file:
+            for i, chat in enumerate(chats, start=1):
+                #for message_write in messages_write:
+                line = f"{str(i)}, {chat['time']} - {chat['name']}: {chat['message']}\n"
+                encoded = line.encode()
+                text_file.write(encoded)'''
 
         # Print the table
         print(t.get_string(title='Your WhatsApp Chats'))
